@@ -36,7 +36,7 @@ resource "aws_instance" "vm1" {
   vpc_security_group_ids = [aws_security_group.sg1.id]
   subnet_id              = aws_subnet.sn1.id
   tags = {
-    "Name" = "Natwest-Vm-Trainer"
+    "Name" = "Natwest-Vm-Trainer-${terraform.workspace}"
   }
   associate_public_ip_address = true
 
@@ -44,7 +44,7 @@ resource "aws_instance" "vm1" {
     source      = "docker.sh"
     destination = "/home/ubuntu/docker.sh"
   }
-    provisioner "remote-exec" {
+  provisioner "remote-exec" {
     inline = [
       "sudo mkdir -p /home/ubuntu/php",
       "sudo mkdir -p /home/ubuntu/project",
@@ -54,7 +54,7 @@ resource "aws_instance" "vm1" {
   }
 
   provisioner "file" {
-    source = "dockerfiles/"
+    source      = "dockerfiles/"
     destination = "/home/ubuntu/project"
   }
   provisioner "remote-exec" {
@@ -69,7 +69,7 @@ resource "aws_instance" "vm1" {
     type        = "ssh"
     host        = self.public_ip
     user        = "ubuntu"
-    private_key = file(pathexpand("~/.ssh/id_rsa"))
+    private_key = var.privatekey
     timeout     = "3m"
   }
 }

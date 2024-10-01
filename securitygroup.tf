@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg1" {
-  name   = "natwest-trainer-sg1"
+  name   = "natwest-trainer-sg1-${terraform.workspace}"
   vpc_id = aws_vpc.vpc1.id
 
   ingress {

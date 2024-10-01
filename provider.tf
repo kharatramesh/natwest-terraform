@@ -8,8 +8,18 @@ terraform {
 }
 
 provider "aws" {
-  access_key = "A$$$$$$$$IK"
-  secret_key = "M$$$$$$$$$$$$$$$$rb3ddhO"
+  access_key = var.akey
+  secret_key = var.skey
   region     = "ap-south-1"
 }
 
+terraform { 
+  cloud { 
+    
+    organization = "natwest-vadapav" 
+
+    workspaces { 
+      name = "natwestprod" 
+    } 
+  } 
+}
