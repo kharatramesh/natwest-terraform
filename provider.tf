@@ -13,13 +13,25 @@ provider "aws" {
   region     = "ap-south-1"
 }
 
-terraform { 
-  cloud { 
+# terraform { 
+#   cloud { 
     
-    organization = "natwest-vadapav" 
+#     organization = "natwest-vadapav" 
 
-    workspaces { 
-      name = "natwestprod" 
-    } 
-  } 
+#     workspaces { 
+#       name = "natwestprod" 
+#     } 
+#   } 
+# }
+
+terraform {
+  cloud {
+    organization = "natwest-vadapav"
+    ## Required for Terraform Enterprise; Defaults to app.terraform.io for Terraform Cloud
+    hostname = "app.terraform.io"
+
+    workspaces {
+      tags = ["natwest-terraform"]
+    }
+  }
 }
