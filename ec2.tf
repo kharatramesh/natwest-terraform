@@ -36,7 +36,7 @@ resource "aws_instance" "vm1" {
   vpc_security_group_ids = [aws_security_group.sg1.id]
   subnet_id              = aws_subnet.sn1.id
   tags = {
-    "Name" = "Natwest-Vm-Trainer-${terraform.workspace}"
+    "Name" = "Natwest-Vm-Trainer-vcs"
   }
   associate_public_ip_address = true
 
