@@ -24,7 +24,7 @@ output "NameofImage" {
 
 resource "null_resource" "nr1" {
   provisioner "local-exec" {
-    command = "echo I like samosa > samosa.txt"
+    command = "echo I like vadapav > samosa.txt"
 
   }
 }
